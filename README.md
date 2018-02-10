@@ -19,6 +19,9 @@ stock object contains % return over past week, day, month, year
 
 
 ### Portfolio Object
+contains collection of equity securities  
+contains beta (risk) variable  
+matches (or normalizes returns) to probability distribution  
 
 ### Views
 
