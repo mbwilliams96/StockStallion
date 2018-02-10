@@ -23,6 +23,7 @@ future update of predictive features
 contains collection of equity securities  
 contains beta (risk) variable  
 matches (or normalizes returns) to probability distribution  
+in future can optimize distribution of risks among stocks to reduce overall risk  
 
 ### Views
 
