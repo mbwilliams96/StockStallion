@@ -5,7 +5,7 @@
 User has username.  
 User has password.   
 User has portfolio full of equity securities.  
-
+User can have bio  
 
 
 ### Stock Object
