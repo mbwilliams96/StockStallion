@@ -1,3 +1,5 @@
+![stock_stallion_logo](./logos/ss_logo_idea_1-2)
+
 # StockStallion Documentation
 
 
