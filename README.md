@@ -1,4 +1,4 @@
-![stock_stallion_logo](./logos/ss_logo_idea_1-2)
+![stock_stallion_logo](https://github.com/CodeApprenticeRai/StockStallion/blob/master/logos/ss_logo_idea_1-2.png?raw=true)
 
 # StockStallion Documentation
 
