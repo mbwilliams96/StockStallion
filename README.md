@@ -11,7 +11,9 @@ StockStallion in a system designed for the viewing, analysis and prediction of p
 {{{ Ideal Architecture Diagram Goes Here }}}
 
 {{{ Iteration 1 Architecture Diagram Goes Here }}}  
+
 ...
+
 {{{ Iteration N Architecture Diagram Goes Here }}}
 
 
@@ -20,11 +22,17 @@ StockStallion in a system designed for the viewing, analysis and prediction of p
 Assignments: 
 
 Tare':
+
 Blake J: 
+
 Blake W:
+
 Justin:
+
 Khaled: 
+
 Nathan: 
+
 Tim: 
 
 #### Iteration 1 Stories 
