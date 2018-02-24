@@ -69,11 +69,17 @@ Features for Future Iterations:
 
 ### Command Line Interface
 -Upon startup will ask for login and password or to create a new profile.
+
 -If user attempts to log in will read from a file a list of passwords and usernames to find a match
+
 -if user creates a new account will it will save said account to the file
+
 -will prompt user to start a portfolio or go to demo mode
+
 -Demo mode consists of a tutorial of how to use StockStallion and the future values of various stock objects
+
 -Portfolio mode will allow user to make their portfolio and show a list of stock objects and their current values
+
 -once portfolio is made, user must specify this, StockStallion will perform it's task and show predicted results
 
 
