@@ -1,11 +1,61 @@
 #include <iostream>
 #include <string>
 #include <vector>
-using namstpace std;
+#include <fstream>
 
 
-class User
-{
+// ### main app class StockStallion is for controlling the state of the app, ###
+// ### and making sure that changes persist each time the program is ran     ###
+class StockStallion{
+	public:
+		StockStallion();
+
+		// Login View which handles authorization
+		void commandLineLoginView();
+		bool authorizeLogin();
+		std:: string getUsernameFromUser();
+		std:: string getPasswordFromUser();
+
+
+		bool registerNewUser();
+		void registrationSuccess();
+		void registrationFailed();
+
+		// Main Menu which allows user to views stocks and perform other actions
+		void commandLineMainMenuView();
+		void displayOptions();
+		int userChoice();
+		void viewStocks();
+
+
+
+
+
+
+	private:
+		// This is for a crude authentication system and must be changed.
+		vector <User> userList;
+		// or another idea, read usernames and passwords from a file.
+
+}
+
+bool StockStallion::registerNewUser(){
+	bool status = false;
+	//get user credentials from stdin (create a function to do this)
+
+	//Write to file in SimpleAuth (See tests.cpp)
+
+	// if done successfully status = true
+
+	//Craete user object and add it to userlist
+
+	// return status
+}
+
+
+
+
+class User{
 public:
 	User(string username, string password, string email, double balance);
 
@@ -57,19 +107,18 @@ void User::openPortfolio(Portfolio portfolio)
 }
 
 
-class Portfolio
-{
+class Portfolio{
 public:
   double add_stock(Stock, int);
   double rmv_stock(Stock);
   /* adds/removes a Stock to the stocks vector
-     along with an initial # of shares, and 
+     along with an initial # of shares, and
      returns the dollar value of the transaction */
 
   double close ();
   /* calls rmv_stock on all stocks in the stocks vector,
      and returns the total dolar value */
-  
+
   void buy_shares(Stock, int);
   void sell_shares(Stock, int);
   /* adds/removes shares from a stock already in the vector,
@@ -81,13 +130,13 @@ public:
 
   double roi();
   // returns current value divided by invested value
-  
+
 
 private:
   string name;
   double investedValue;
   double currentValue;
-  vector<Stock> stocks;  
+  vector<Stock> stocks;
 }
 
 class stock{
@@ -106,12 +155,12 @@ class stock{
         string getCompanyName(string);
         int getCurrentPrice(string);
         int getNumberOfShares(string);
-        
+
 }
 
 stock::stock(string stockName){
     //initializes a stock object using the parameter of its NYSE identifier
-    this -> stockName = stockName;    
+    this -> stockName = stockName;
 }
 
 //accessor and mutator for company name
@@ -124,7 +173,7 @@ void setCompanyName(string stockName){
 }
 
 string getCompanyName(string stockName){
-    return this-> companyName; 
+    return this-> companyName;
 }
 
 //accessor and mutator for current price
@@ -137,7 +186,7 @@ void setCurrentPricePerShare(string stockName){
 }
 
 string getCurrentPricePerShare(string stockName){
-    return this-> currentPricePerShare; 
+    return this-> currentPricePerShare;
 }
 
 
@@ -150,5 +199,5 @@ void setNumberOfShares(string stockName){
 }
 
 string getNumberOfShares(string stockName){
-    return this-> numberofSharesOwned; 
+    return this-> numberofSharesOwned;
 }
