@@ -4,7 +4,7 @@
 #include <fstream>
 #include "sqlite3.h"
 #include "StockStallion.h"
-
+/**
 int main(){
   // ### Simple Authentication Registration Test  ### //
   // std::ofstream exampleAuthFile;
@@ -27,3 +27,4 @@ int main(){
 
 
 }
+*/

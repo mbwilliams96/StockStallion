@@ -1,0 +1,4 @@
+#files to be ifnored
+.idea/
+CMake*
+cmake-build-debug/*
