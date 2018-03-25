@@ -4,7 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <iostream>
-
+//
 StockStallion::StockStallion() {
 
 }
