@@ -11,34 +11,36 @@ public:
 	StockStallion();
 
 	// Database Functions
-	static void initializeDB();
-	static void addUserToDB(std::string username, std::string password);
+	void initializeDB();
+	void addUserToDB(std::string username, std::string password);
 
     //templates suck for multi file projects : (
     template <typename T>
     T requestInputFromUser(const std::string &userPrompt);
 
 
-    static bool verifyChoiceInRange(int choice, int max);
+    bool verifyChoiceInRange(int choice, int max);
 
     // prompts user with options to login or register
-    std::string loginRegisterPrompt();
+    static std::string loginRegisterPrompt();
+    static bool is_name_alphanumeric(std::string &_name_);
 
-
-	static bool verifyUsername(std::string username);
-	static bool verifyPassword(std::string pw);
+	bool verifyUsername(std::string username);
+	bool verifyPassword(std::string pw);
 
     //gets user info (username, password), POSTS it to DB.
     //void registerNewUser();
 
-    static void loginRegisterSequence();
-	static void commandLineLoginRegisterView();
-	static bool authorizeLogin(std::string _Username, std::string _Password);
-	static std::string getUsernameFromUser();
-	static std:: string getPasswordFromUser();
+    void loginRegisterSequence();
+	void commandLineLoginRegisterView();
+	bool authorizeLogin(std::string _Username, std::string _Password);
+	std::string getUsernameFromUser();
+	std:: string getPasswordFromUser();
 
 
-    static bool registerNewUser();
+    static std::string registerNewUser();
+    static std::string registerNewPass();
+    static bool does_pass_pass(std::string &_pass_);
 	// void registrationSuccess();
 	// void registrationFailed();
 
