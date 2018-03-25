@@ -9,7 +9,7 @@ StockStallion::StockStallion() {
 
 }
 
-std::string StockStallion::loginRegisterPrompt() {
+static std::string StockStallion::loginRegisterPrompt() {
     //However, cin extraction always considers spaces (whitespaces, tabs, new-line...) as terminating the value being
     // extracted, and thus extracting a string means to always extract a single word,
     // not a phrase or an entire sentence.
@@ -24,9 +24,22 @@ std::string StockStallion::loginRegisterPrompt() {
     return choice;
 }
 
+static bool StockStallion::authorizeLogin(std::string _Username, std::string _Password) {
+    if( this ->verifyUsername(_Username)){
+       if(this -> verifyPassword(_Password)){
+           return true;
+       }
+        else{
+           return false;
+       }
+    }
+    else{
+        return false;
+    }
 
+}
 
-bool StockStallion::verifyPassword(std::string pw) {
+static bool StockStallion::verifyPassword(std::string pw) {
     try{
         std::ifstream infile;
         std::string password;
@@ -51,7 +64,7 @@ bool StockStallion::verifyPassword(std::string pw) {
     }
 }
 
-bool StockStallion::verifyUsername(std::string username) {
+static bool StockStallion::verifyUsername(std::string username) {
     try{
         std::ifstream infile;
         std::string username_;
@@ -76,9 +89,9 @@ bool StockStallion::verifyUsername(std::string username) {
     }
 }
 
+static bool StockStallion::registerNewUser() {}
 
 int main() {
-    StockStallion stall;
-    stall.verifyPassword("password");
+    
     return 0;
 }

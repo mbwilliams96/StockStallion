@@ -11,34 +11,34 @@ public:
 	StockStallion();
 
 	// Database Functions
-	void initializeDB();
-	void addUserToDB(std::string username, std::string password);
+	static void initializeDB();
+	static void addUserToDB(std::string username, std::string password);
 
     //templates suck for multi file projects : (
     template <typename T>
     T requestInputFromUser(const std::string &userPrompt);
 
 
-    bool verifyChoiceInRange(int choice, int max);
+    static bool verifyChoiceInRange(int choice, int max);
 
     // prompts user with options to login or register
     std::string loginRegisterPrompt();
 
 
-	bool verifyUsername(std::string username);
-	bool verifyPassword(std::string pw);
+	static bool verifyUsername(std::string username);
+	static bool verifyPassword(std::string pw);
 
     //gets user info (username, password), POSTS it to DB.
-    void registerNewUser();
+    //void registerNewUser();
 
-    void loginRegisterSequence();
-	void commandLineLoginRegisterView();
-	// bool authorizeLogin();
-	// std:: string getUsernameFromUser();
-	// std:: string getPasswordFromUser();
+    static void loginRegisterSequence();
+	static void commandLineLoginRegisterView();
+	static bool authorizeLogin(std::string _Username, std::string _Password);
+	static std::string getUsernameFromUser();
+	static std:: string getPasswordFromUser();
 
 
-	// bool registerNewUser();
+    static bool registerNewUser();
 	// void registrationSuccess();
 	// void registrationFailed();
 
