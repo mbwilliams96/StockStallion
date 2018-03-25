@@ -44,20 +44,18 @@ bool StockStallion::verifyPassword(std::string pw) {
         std::ifstream infile;
         std::string password;
         infile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-        infile.open("/home/botnet/SS",std::ios::in);
-        while(!infile.eof()){
-            infile >> password;
-            std::cout << password << std::endl;
+        infile.open("../SS",std::ios::in);
+        while(infile.good()){
+            if(infile.eof()){
+                break;
+            }
             if(password == pw){
                 std::cout << "password found" << std::endl;
                 return true;
             }
+            infile >> password;
         }
-        std::cout << "password not found" << std::endl;
-        infile.close();
-        return false;
-
-
+        std::cout << "password doesn't exist" << std::endl;
     } catch (std::ifstream::failure e){
         std::cerr << "file doesn't exist " << std::endl;
         std::exit(1);
@@ -149,16 +147,7 @@ static std::string registerNewPass(){
 }
 
 int main() {
-    std::string userchoice;
-    std::string testName;
-    std::string testPass;
-    userchoice = StockStallion::loginRegisterPrompt();
-    if(userchoice == "1"){
-        testName = registerNewUser();
-        testPass = registerNewPass();
-    }
-    else{
-        std::cout << "we haven't made it that far yet" << std::endl;
-    }
+    StockStallion a;
+    a.verifyPassword("hello");
     return 0;
 }
