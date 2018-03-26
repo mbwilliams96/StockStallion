@@ -25,8 +25,8 @@ public:
     static std::string loginRegisterPrompt();
     static bool is_name_alphanumeric(std::string &_name_);
 
-	bool verifyUsername(std::string username);
-	bool verifyPassword(std::string pw);
+	bool verifyUsername(std::string &username);
+	bool verifyPassword(std::string &pw);
 
     //gets user info (username, password), POSTS it to DB.
     //void registerNewUser();
@@ -41,7 +41,7 @@ public:
     static std::string registerNewUser();
     static std::string registerNewPass();
     static bool does_pass_pass(std::string &_pass_);
-	// void registrationSuccess();
+	static void registrationSuccess(std::string &username, std::string &password);
 	// void registrationFailed();
 
 	// Main Menu which allows user to views stocks and perform other actions

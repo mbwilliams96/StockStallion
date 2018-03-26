@@ -39,7 +39,7 @@ bool StockStallion::authorizeLogin(std::string _Username, std::string _Password)
 
 }
 
-bool StockStallion::verifyPassword(std::string pw) {
+bool StockStallion::verifyPassword(std::string &pw) {
     std::ifstream infile;
     std::string password;
     infile.open("../SS",std::ios::in);
@@ -59,67 +59,78 @@ bool StockStallion::verifyPassword(std::string pw) {
 
 }
 
-bool StockStallion::verifyUsername(std::string username) {
-    try{
-        std::ifstream infile;
-        std::string username_;
-        infile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-        infile.open("/home/botnet/SS",std::ios::in);
-        while(!infile.eof()){
-            infile >> username_;
-            std::cout << username_ << std::endl;
-            if(username_ == username){
-                std::cout << "username found" << std::endl;
-                return true;
-            }
-        }
-        std::cout << "username not found" << std::endl;
-        infile.close();
-        return false;
-
-
-    } catch (std::ifstream::failure e){
+bool StockStallion::verifyUsername(std::string &username) {
+    std::ifstream infile;
+    std::string user;
+    infile.open("../SS",std::ios::in);
+    if(infile.eof()){
         std::cerr << "file doesn't exist " << std::endl;
         std::exit(1);
     }
+    while(infile.good()){
+        infile >> user;
+        if(user == username){
+            std::cout << "username found" << std::endl;
+            return true;
+        }
+    }
+    std::cout << "username doesn't exist" << std::endl;
+    return false;
 }
 
-static bool is_name_alphanumeric(std::string &_name_) {
+bool StockStallion::is_name_alphanumeric(std::string &_name_) {
     /**
      * string must be at least 10 characters long and contain only
      * numerals or letters
      */
+    int integer = 0;
+    int chara = 0;
     for(int i = 0; i < _name_.length(); i++){
-        if(isalnum(_name_[i])){
-            continue;
+        if(isdigit(_name_[i])){
+            integer++;
+        }
+        else if(isalpha(_name_[i])){
+            chara++;
         }
         else{
             return false;
         }
     }
-    return true;
+    if (chara > 1 && integer > 1){
+        if(_name_.length() > 9){
+            return true;
+        }
+    }
+    return false;
 }
 
 static bool does_pass_pass(std::string &_pass_){
-    if (_pass_.size() > 7 && _pass_.size() < 21) {
-        for (int i = 0; i < _pass_.length(); i++) {
-            if (isalnum(_pass_[i])) {
-                continue;
-            } else {
-                return false;
-            }
+    int integer = 0;
+    int chara = 0;
+    for(int i = 0; i < _pass_.length(); i++){
+        if(isdigit(_pass_[i])){
+            integer++;
         }
-        return true;
-    } else{
-        return false;
+        else if(isalpha(_pass_[i])){
+            chara++;
+        }
+        else{
+            return false;
+        }
     }
+    if (chara > 1 && integer > 1){
+        if(_pass_.length() > 7 && _pass_.length() < 21){
+            return true;
+        }
+    }
+    return false;
 }
 
-static std::string registerNewUser() {
+std::string StockStallion::registerNewUser() {
     std::string name;
     std::cout << "Hello and welcome to our game \n";
     std::cout << "if you want to play create a name \n";
-    std::cout << "Alphanumeric characters only: ";
+    std::cout << "Alphanumeric characters only and at least 10 characters: ";
     std::cin >> name;
     while(!is_name_alphanumeric(name)){
         std::cout << "sorry that username isn't accepted" << std::endl;
@@ -129,7 +140,7 @@ static std::string registerNewUser() {
     return name;
 }
 
-static std::string registerNewPass(){
+std::string registerNewPass(){
     std::string pass;
     std::cout << "now you make the password \n";
     std::cout << "it's quite simple actually \n";
@@ -143,8 +154,44 @@ static std::string registerNewPass(){
     return pass;
 }
 
+void StockStallion::registrationSuccess(std::string &username, std::string &password) {
+    std::ofstream outputfile;
+    std::ifstream inputfile;
+    inputfile.open("../SS",std::ios::in);
+    if(inputfile.eof()){
+        inputfile.close();
+    }
+    else{
+        std::string read;
+        while(inputfile.good()){
+            inputfile >> read;
+            if(read == username){
+                std::cout << "there is a matching username" << std::endl;
+                std::cout << "close the program and try again" << std::endl;
+                exit(0);
+            }
+        }
+    }
+    inputfile.close();
+    outputfile.open("../SS",std::ios::app);
+    if(outputfile.eof()){
+        std::cerr << "something went wrong " << std::endl;
+        exit(1);
+    }
+    outputfile << username << "\n";
+    outputfile << password << "\n";
+    outputfile.close();
+}
+
 int main() {
-    StockStallion a;
-    a.verifyPassword("hello");
+    std::string choice;
+    choice = StockStallion::loginRegisterPrompt();
+    if (choice == "1"){
+        std::string name;
+        std::string pass;
+        name = StockStallion::registerNewUser();
+        pass = registerNewPass();
+        StockStallion::registrationSuccess(name,pass);
+    }
     return 0;
 }
