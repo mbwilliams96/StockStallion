@@ -24,18 +24,23 @@ std::string StockStallion::loginRegisterPrompt() {
     return choice;
 }
 
-bool StockStallion::authorizeLogin(std::string _Username, std::string _Password) {
-    if( StockStallion::verifyUsername(_Username)){
-       if(StockStallion::verifyPassword(_Password)){
-           return true;
-       }
-        else{
-           return false;
-       }
+bool StockStallion::authorizeLogin() {
+    std::cout << "Thank you for signing into StockStallion" << std::endl;
+    std::cout << "Please enter your Username: ";
+    std::string name;
+    std::cin >> name;
+    if (this ->verifyUsername(name)){
+        std::cout << " " << std::endl;
+        std::cout << "Please enter your password: ";
+        std::string password;
+        std::cin >> password;
+        if(this -> verifyPassword(password)){
+            std::cout << " " << std::endl;
+            std::cout << "Congratulations for logging in !" << std::endl;
+            std::cout << "I have no idea what to do!" << std::endl;
+        }
     }
-    else{
-        return false;
-    }
+    return true;
 
 }
 
@@ -193,5 +198,7 @@ int main() {
         pass = registerNewPass();
         StockStallion::registrationSuccess(name,pass);
     }
+    StockStallion stallion;
+    stallion.authorizeLogin();
     return 0;
 }

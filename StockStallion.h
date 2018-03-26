@@ -33,7 +33,7 @@ public:
 
     void loginRegisterSequence();
 	void commandLineLoginRegisterView();
-	bool authorizeLogin(std::string _Username, std::string _Password);
+	bool authorizeLogin();
 	std::string getUsernameFromUser();
 	std:: string getPasswordFromUser();
 
