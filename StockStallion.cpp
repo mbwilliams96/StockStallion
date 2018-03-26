@@ -40,26 +40,23 @@ bool StockStallion::authorizeLogin(std::string _Username, std::string _Password)
 }
 
 bool StockStallion::verifyPassword(std::string pw) {
-    try{
-        std::ifstream infile;
-        std::string password;
-        infile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-        infile.open("../SS",std::ios::in);
-        while(infile.good()){
-            if(infile.eof()){
-                break;
-            }
-            if(password == pw){
-                std::cout << "password found" << std::endl;
-                return true;
-            }
-            infile >> password;
-        }
-        std::cout << "password doesn't exist" << std::endl;
-    } catch (std::ifstream::failure e){
+    std::ifstream infile;
+    std::string password;
+    infile.open("../SS",std::ios::in);
+    if(infile.eof()){
         std::cerr << "file doesn't exist " << std::endl;
         std::exit(1);
     }
+    while(infile.good()){
+        infile >> password;
+        if(password == pw){
+            std::cout << "password found" << std::endl;
+            return true;
+        }
+    }
+    std::cout << "password doesn't exist" << std::endl;
+    return false;
+
 }
 
 bool StockStallion::verifyUsername(std::string username) {
