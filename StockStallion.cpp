@@ -125,9 +125,53 @@ void StockStallion::loginRegisterPrompt(){
 //   }
 // }
 
-bool StockStallion::verifyUsername(std::string username){return true;}
+bool StockStallion::verifyUsername(std::string username){
+  /**
+   * string must be at least 10 characters long and contain only
+   * numerals or letters
+   */
+  int integer = 0;
+  int chara = 0;
+  for(int i = 0; i < _name_.length(); i++){
+      if(isdigit(_name_[i])){
+          integer++;
+      }
+      else if(isalpha(_name_[i])){
+          chara++;
+      }
+      else{
+          return false;
+      }
+  }
+  if (chara > 1 && integer > 1){
+      if(_name_.length() > 9){
+          return true;
+      }
+  }
+  return false;
+}
 // passwords shouldn't contain spaces.
-bool StockStallion::verifyPassword(std::string pw){return true;}
+bool StockStallion::verifyPassword(std::string pw){
+  int integer = 0;
+  int chara = 0;
+  for(int i = 0; i < _pass_.length(); i++){
+      if(isdigit(_pass_[i])){
+          integer++;
+      }
+      else if(isalpha(_pass_[i])){
+          chara++;
+      }
+      else{
+          return false;
+      }
+  }
+  if (chara > 1 && integer > 1){
+      if(_pass_.length() > 7 && _pass_.length() < 21){
+          return true;
+      }
+  }
+  return false;
+}
 bool StockStallion::verifyChoiceInRange(int choice, int max){
   if ( choice < 0){
     return false;
@@ -141,11 +185,11 @@ void StockStallion::registerNewUser(){
 
   std::cout << "\n\nEnter a username: ";
   std::cin >> username;
-  // verification step //
+  this -> verifyUsername(username);
 
   std::cout << "\n\nEnter a password: ";
   std::cin >> password;
-
+  this -> verifyPassword(password);
   StockStallion::addUserToDB(username, password);
 
   std::cout << "Congratulations! You may have been registered as " << "''" << username << "''.";
