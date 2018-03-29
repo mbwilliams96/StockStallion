@@ -23,8 +23,8 @@ class StockStallion{
     void loginRegisterPrompt();
 
 
-		bool verifyUsername(std::string username);
-		bool verifyPassword(std::string pw);
+		bool verifyUsername(std::string &username);
+		bool verifyPassword(std::string &password);
 
     //gets user info (username, password), POSTS it to DB.
     void registerNewUser();

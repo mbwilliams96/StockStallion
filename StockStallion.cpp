@@ -1,5 +1,7 @@
 #include <limits>
+#include <iostream>
 #include "StockStallion.h"
+#include <string>
 #include "sqlite3.h"
 
 StockStallion::StockStallion(){
@@ -125,18 +127,18 @@ void StockStallion::loginRegisterPrompt(){
 //   }
 // }
 
-bool StockStallion::verifyUsername(std::string username){
+bool StockStallion::verifyUsername(std::string &username){
   /**
    * string must be at least 10 characters long and contain only
    * numerals or letters
    */
   int integer = 0;
   int chara = 0;
-  for(int i = 0; i < _name_.length(); i++){
-      if(isdigit(_name_[i])){
+  for(int i = 0; i < username.length(); i++){
+      if(isdigit(username[i])){
           integer++;
       }
-      else if(isalpha(_name_[i])){
+      else if(isalpha(username[i])){
           chara++;
       }
       else{
@@ -144,21 +146,21 @@ bool StockStallion::verifyUsername(std::string username){
       }
   }
   if (chara > 1 && integer > 1){
-      if(_name_.length() > 9){
+      if(username.length() > 9){
           return true;
       }
   }
   return false;
 }
 // passwords shouldn't contain spaces.
-bool StockStallion::verifyPassword(std::string pw){
+bool StockStallion::verifyPassword(std::string &password){
   int integer = 0;
   int chara = 0;
-  for(int i = 0; i < _pass_.length(); i++){
-      if(isdigit(_pass_[i])){
+  for(int i = 0; i < password.length(); i++){
+      if(isdigit(password[i])){
           integer++;
       }
-      else if(isalpha(_pass_[i])){
+      else if(isalpha(password[i])){
           chara++;
       }
       else{
@@ -166,7 +168,7 @@ bool StockStallion::verifyPassword(std::string pw){
       }
   }
   if (chara > 1 && integer > 1){
-      if(_pass_.length() > 7 && _pass_.length() < 21){
+      if(password.length() > 7 && password.length() < 21){
           return true;
       }
   }
