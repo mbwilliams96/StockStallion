@@ -12,15 +12,12 @@
 int main(){
 
   StockStallion app = StockStallion();
+
   app.commandLineLoginRegisterView();
-  // authentication step and view,
-  // registerNewUser()
 
-  // exampleUser =; //In this demo case instead of
+  // StockStallion::User user = app.commandLineLoginRegisterView();
 
-  // main menu view and access.
-
-  // commandLineMainMenuView( exampleUser)
+  // app.commandLineMainMenuView( user )
 
   return 0;
 }

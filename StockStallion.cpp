@@ -2,12 +2,82 @@
 #include "StockStallion.h"
 #include "sqlite3.h"
 
+// Constructor: Initiatlizes component and prints Welcome Message.
 StockStallion::StockStallion(){
   // initialize db on startup
-  StockStallion::initializeDB();
+  // StockStallion::initializeDB();
+
+  std::cout << "Welcome to Stock Stallion!\n\n";
+  std::cout << "StockStallion in a system designed for the viewing, analysis and prediction of performance of stocks.\nIt simplifies investment strategy.\n\n";
 }
 
-// ### DATABASE INTERFACE FUNCTIONS ####
+
+// ################# VIEW FUNCTIONS #################
+
+// Register / Login User else exit
+void StockStallion::commandLineLoginRegisterView(){
+
+    // This function can be abstracted as a function for handling all user
+    // interaction.
+    int choice = StockStallion::loginRegisterPrompt();
+
+    switch(choice){
+       case 1:
+         // getLoginUsername();
+         // getLoginPassword();
+         // authorizeLogin();
+         break;
+       case 2:
+         // getRegisterUsername();
+         // getRegisterPassword();
+         // StockStallion::registerNewUser();
+         break;
+      case  3:
+        std::cout << "Thank you for using Stock Stallion!\n\n";
+        exit(0);
+   }
+
+    return;
+  }
+void StockStallion::portfolioView(){};
+
+// ################# END OF VIEWS #################
+
+
+
+
+
+// ################# PROMPTS #################
+
+// displays loginRegister View options to user and returns their choice
+int StockStallion::loginRegisterPrompt(){
+  std::cout << "\nChoose an option:\n\n";
+  std::cout << "[1]\tLogin\n";
+  std::cout << "[2]\tRegister\n";
+
+  int choice;
+  bool validChoice;
+
+  //valdiate input
+  validChoice = verifyChoiceInRange(choice, 2);
+  std::cout << validChoice;
+  while( (std::cin.fail()) or !validChoice ) {
+      std::cout << "Enter an integer in range 1-2.\n";
+      std::cin.clear();
+      std::cin.ignore(256, '\n');
+      std::cout << "Choice: ";
+      std::cin >> choice;
+      validChoice = verifyChoiceInRange(choice, 2);
+  }
+  return choice;
+}
+
+// ################# END OF PROMPTS #################
+
+
+
+// ################# DATABASE INTERFACE FUNCTIONS #################
+
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
    for(i = 0; i<argc; i++) {
@@ -77,10 +147,29 @@ void StockStallion::addUserToDB(std::string username, std::string password){
   sqlite3_close(db);
   return;
 }
-// END OF DATABASE INTERFACE FUNCTIONS
+
+// ################# END OF DATABASE INTERFACE FUNCTIONS #################
 
 
-// template doesn't work
+
+
+
+// ################# INPUT HANDLING FUNCTIONS #################
+
+bool StockStallion::verifyUsername(std::string username){return true;}
+// passwords shouldn't contain spaces.
+bool StockStallion::verifyPassword(std::string pw){return true;}
+bool StockStallion::verifyChoiceInRange(int choice, int max){
+  if ( choice < 0){
+    return false;
+  }
+  return (choice <= max);
+}
+
+// I (Tare') couldn't get the template to work.
+// If someone can figure this out, it would be useful
+// The idea is to use to create a funtion that could
+// handle all user in / output.
 template <typename T>
 T StockStallion::requestInputFromUser(const std::string &userPrompt){
     std::cout << userPrompt << "\n> ";
@@ -94,105 +183,4 @@ T StockStallion::requestInputFromUser(const std::string &userPrompt){
     return out;
 }
 
-void StockStallion::loginRegisterPrompt(){
-  std::cout << "\nChoose an option:\n\n";
-  std::cout << "[1]\tLogin\n";
-  std::cout << "[2]\tRegister\n";
-  return;
-}
-
-// verify strings
-// It would be alot better if we could use a template for accepting and
-// verifying user input. Couldn't get the templates to work though.
-// Usernames should be aplhanumeric
-
-// couldn't seal down the logic for this one
-// bool verifyInput(std::string stringInput, int stringType){
-//   swtich (stringType){
-//     case 0: // string is an intended usernames
-//       validChoice = StockStallion::verifyUsername(stringInput);
-//     case 1;
-//       validChoice = StockStallion::verifyPassword(stringInput);
-//   }
-//
-//   while( (std::cin.fail()) or !validChoice) {
-//     std::cout << "Enter a valid string";
-//     std::cin.clear();
-//     std::cin.ignore(256,'\n');
-//     std::cout << ": ";
-//     std::cin >> string;
-//     validChoice = verifyChoiceInRange(choice, 2);
-//   }
-// }
-
-bool StockStallion::verifyUsername(std::string username){return true;}
-// passwords shouldn't contain spaces.
-bool StockStallion::verifyPassword(std::string pw){return true;}
-bool StockStallion::verifyChoiceInRange(int choice, int max){
-  if ( choice < 0){
-    return false;
-  }
-  return (choice <= max);
-}
-void StockStallion::registerNewUser(){
-  std::cout << "\n\n\nWelcome to the Stock Stallion Registration Prompt.";
-  // other fields can be added { name, temperament, etc}
-  std::string username, password;
-
-  std::cout << "\n\nEnter a username: ";
-  std::cin >> username;
-  // verification step //
-
-  std::cout << "\n\nEnter a password: ";
-  std::cin >> password;
-
-  StockStallion::addUserToDB(username, password);
-
-  std::cout << "Congratulations! You may have been registered as " << "''" << username << "''.";
-  return;
-}
-
-void StockStallion::loginRegisterSequence(){
-    // templates are constrained such that the implementation
-    // and instantiation must happen in the same place (otherwise there will be errors)
-    // (still doesn't work )
-  int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );
-  // StockStallion::loginRegisterPrompt();
-  // int choice;
-  // bool validChoice;
-  // std::cout << "Choice: ";
-  // std::cin >> choice;
-  //
-  // //valdiate input
-  // validChoice = verifyChoiceInRange(choice, 2);
-  // std::cout << validChoice;
-  // while( (std::cin.fail()) or !validChoice ) {
-  //   std::cout << "Enter an integer in range 1-2.\n";
-  //   std::cin.clear();
-  //   std::cin.ignore(256,'\n');
-  //   std::cout << "Choice: ";
-  //   std::cin >> choice;
-  //   validChoice = verifyChoiceInRange(choice, 2);
-  // }
-
-  // switch(choice){
-  //   case 1:
-  //     // authorizeLoginSequence();
-  //   case 2:
-  //     StockStallion::registerNewUser();
-  // }
-  return;
-}
-
-
-void StockStallion::commandLineLoginRegisterView(){
-    std::cout << "Welcome to Stock Stallion!\n\n";
-    std::cout << "StockStallion in a system designed for the viewing, analysis and prediction of performance of stocks.\nIt simplifies investment strategy.\n\n";
-    StockStallion::loginRegisterSequence();
-    // bool validChoice = false;
-
-
-
-
-    return;
-  }
+// ################# END OF INPUT HANDLING FUNCTIONS #################

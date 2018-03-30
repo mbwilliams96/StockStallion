@@ -1,0 +1,94 @@
+[1mdiff --git a/StockStallion.cpp b/StockStallion.cpp[m
+[1mindex fbdcd31..327acdc 100644[m
+[1m--- a/StockStallion.cpp[m
+[1m+++ b/StockStallion.cpp[m
+[36m@@ -163,31 +163,31 @@[m [mvoid StockStallion::loginRegisterSequence(){[m
+     // templates are constrained such that the implementation[m
+     // and instantiation must happen in the same place (otherwise there will be errors)[m
+     // (still doesn't work )[m
+[31m-    // int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );[m
+[31m-  StockStallion::loginRegisterPrompt();[m
+[31m-  int choice;[m
+[31m-  bool validChoice;[m
+[31m-  std::cout << "Choice: ";[m
+[31m-  std::cin >> choice;[m
+[31m-[m
+[31m-  //valdiate input[m
+[31m-  validChoice = verifyChoiceInRange(choice, 2);[m
+[31m-  std::cout << validChoice;[m
+[31m-  while( (std::cin.fail()) or !validChoice ) {[m
+[31m-    std::cout << "Enter an integer in range 1-2.\n";[m
+[31m-    std::cin.clear();[m
+[31m-    std::cin.ignore(256,'\n');[m
+[31m-    std::cout << "Choice: ";[m
+[31m-    std::cin >> choice;[m
+[31m-    validChoice = verifyChoiceInRange(choice, 2);[m
+[31m-  }[m
+[31m-[m
+[31m-  switch(choice){[m
+[31m-    case 1:[m
+[31m-      // authorizeLoginSequence();[m
+[31m-    case 2:[m
+[31m-      StockStallion::registerNewUser();[m
+[31m-  }[m
+[32m+[m[32m  int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );[m
+[32m+[m[32m  // StockStallion::loginRegisterPrompt();[m
+[32m+[m[32m  // int choice;[m
+[32m+[m[32m  // bool validChoice;[m
+[32m+[m[32m  // std::cout << "Choice: ";[m
+[32m+[m[32m  // std::cin >> choice;[m
+[32m+[m[32m  //[m
+[32m+[m[32m  // //valdiate input[m
+[32m+[m[32m  // validChoice = verifyChoiceInRange(choice, 2);[m
+[32m+[m[32m  // std::cout << validChoice;[m
+[32m+[m[32m  // while( (std::cin.fail()) or !validChoice ) {[m
+[32m+[m[32m  //   std::cout << "Enter an integer in range 1-2.\n";[m
+[32m+[m[32m  //   std::cin.clear();[m
+[32m+[m[32m  //   std::cin.ignore(256,'\n');[m
+[32m+[m[32m  //   std::cout << "Choice: ";[m
+[32m+[m[32m  //   std::cin >> choice;[m
+[32m+[m[32m  //   validChoice = verifyChoiceInRange(choice, 2);[m
+[32m+[m[32m  // }[m
+[32m+[m
+[32m+[m[32m  // switch(choice){[m
+[32m+[m[32m  //   case 1:[m
+[32m+[m[32m  //     // authorizeLoginSequence();[m
+[32m+[m[32m  //   case 2:[m
+[32m+[m[32m  //     StockStallion::registerNewUser();[m
+[32m+[m[32m  // }[m
+   return;[m
+ }[m
+ [m
+[1mdiff --git a/tests.cpp b/tests.cpp[m
+[1mindex a49f109..a1325bb 100644[m
+[1m--- a/tests.cpp[m
+[1m+++ b/tests.cpp[m
+[36m@@ -5,6 +5,19 @@[m
+ #include "sqlite3.h"[m
+ #include "StockStallion.h"[m
+ [m
+[32m+[m[32mtemplate <typename T>[m
+[32m+[m[32mT requestInputFromUser(const std::string &userPrompt){[m
+[32m+[m[32m    std::cout << userPrompt << "\n> ";[m
+[32m+[m[32m    T out = T();[m
+[32m+[m[32m    while (!(std::cin >> out)) {[m
+[32m+[m[32m        std::cin.clear();[m
+[32m+[m[32m        std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');[m
+[32m+[m[32m        std::cout << "Error!" "\n";[m
+[32m+[m[32m        std::cout << userPrompt << "\n> ";[m
+[32m+[m[32m    }[m
+[32m+[m[32m    return out;[m
+[32m+[m[32m}[m
+[32m+[m
+ int main(){[m
+   // ### Simple Authentication Registration Test  ### //[m
+   // std::ofstream exampleAuthFile;[m
+[36m@@ -22,7 +35,7 @@[m [mint main(){[m
+   // std::cout << filename;[m
+   // ### END OF Simple Authentication Registration Test  ### //[m
+ [m
+[31m-[m
+[32m+[m[32m  int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );[m
+   //registration needs to make sure that entry doesn't already exist and that[m
+ [m
+ [m
