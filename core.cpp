@@ -10,6 +10,11 @@
 
 
 int main(){
+  system { "title Stock Stallion: Stocks Made Simple" };
+  system { "cls" };
+  system { "color 9f" };
+
+
 
   StockStallion app = StockStallion();
 
