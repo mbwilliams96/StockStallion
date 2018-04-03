@@ -20,7 +20,7 @@ class StockStallion{
 		// Database Functions
 		void initializeDB();
 		void addUserToDB(std::string username, std::string password);
-
+		void verifyLogin(std::string username, std::string password);
     //templates suck for multi file projects : (
     template <typename T>
     T requestInputFromUser(const std::string &userPrompt);
@@ -37,7 +37,7 @@ class StockStallion{
 
     //gets user info (username, password), POSTS it to DB.
     void registerNewUser();
-
+	bool authorizeLogin();
 
 };
 #endif

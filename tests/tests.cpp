@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include "sqlite3.h"
-#include "StockStallion.h"
+#include "../sqlite/sqlite3.h"
+#include "../StockStallion.h"
 
 // template <typename T>
 // T requestInputFromUser(const std::string &userPrompt){
@@ -18,8 +18,11 @@
 //     return out;
 // }
 
-#include <stdio.h>
-#include <sqlite3.h>
+
+// Hello World
+
+
+
 
 int main(int argc, char* argv[]) {
    sqlite3 *db;
@@ -27,7 +30,7 @@ int main(int argc, char* argv[]) {
    int rc;
 
    rc = sqlite3_open("test.db", &db);
-
+2
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
       return(0);
@@ -38,24 +41,30 @@ int main(int argc, char* argv[]) {
 }
 
 
+
+
+
+
+
+
+
 // int main(){
 
   // ### Simple Authentication Registration Test  ### //
   // std::ofstream exampleAuthFile;
-  //
+
   // std::string exampleUsername = "GregGNV101";
   // std::string examplePassword = "hello";
-  //
-  //
+
+
   // std:: string filename = "./simpleAuth/" + exampleUsername + ".txt";
   // exampleAuthFile.open(filename);
-  //
-  // if (exampleAuthFile.is_open()){
-  //   exampleAuthFile << examplePassword << "\n";
-  // }
+
+  //  if (exampleAuthFile.is_open()){
+  // exampleAuthFile << examplePassword << "\n";
+//   }
   // std::cout << filename;
   // ### END OF Simple Authentication Registration Test  ### //
 
-  // int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );
+  //   int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );
   //registration needs to make sure that entry doesn't already exist and that
-// }

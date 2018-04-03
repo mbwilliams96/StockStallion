@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include "sqlite3.h"
+#include "./sqlite/sqlite3.h"
 #include "StockStallion.h"
 #include "StockStallion.cpp"
 
@@ -10,9 +10,9 @@
 
 
 int main(){
-  system { "title Stock Stallion: Stocks Made Simple" };
-  system { "cls" };
-  system { "color 9f" };
+//  system { "title Stock Stallion: Stocks Made Simple" };
+//  system { "cls" };
+//  system { "color 9f" };
 
 
 
