@@ -5,14 +5,37 @@ using namespace std;
 
 #include <curl/curl.h>
 
+struct request {
+    std::string base = std::string("https://www.alphavantage.co/query?")
+    std::string function = std::string("function=TIME_SERIES_INTRADAY");
+    std::string symbol = std::string("symbol=");
+    std::string interval = std::string("interval=1min");
+    std::string api_key = std::string("apikey=CRINRUHDWCNFTVK2")
+
+};
 int main(void)
 {
     CURL *curl;
     CURLcode res;
+    std::string ticker_symbol;
+
+    std::cout << "Enter the Ticker Symbol You Would Like to Add: ";
+    std::cin >> ticker_symbol;
+
+    if (ticker_symbol.length() > 5){ exit(0);}
 
     curl = curl_easy_init();
+
+    request request = request{};
+
+    request.symbol.append(ticker_symbol);
+
+    std::string req = request.base + request.function + "&" + request.symbol + "&" + request.interval + "&" + request.api_key;
+
+
+
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=CRINRUHDWCNFTVK2");
+        curl_easy_setopt(curl, CURLOPT_URL, request);
         /* example.com is redirected, so we tell libcurl to follow redirection */
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 

@@ -68,3 +68,32 @@ int main(int argc, char* argv[]) {
 
   //   int choice = requestInputFromUser("\nChoose an option:\n\n" "[1]\tLogin\n" "[2]\tRegister\n" );
   //registration needs to make sure that entry doesn't already exist and that
+
+
+
+
+// #### GET CWD ########333
+
+//
+//#include <stdio.h>  /* defines FILENAME_MAX */
+//#ifdef WINDOWS
+//#include <direct.h>
+//    #define GetCurrentDir _getcwd
+//#else
+//#include <unistd.h>
+//#define GetCurrentDir getcwd
+//#endif
+//
+
+
+//char cCurrentPath[FILENAME_MAX];
+//
+//if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
+//{
+//return errno;
+//}
+//
+//cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+//
+//printf ("The current working directory is %s", cCurrentPath);
+//

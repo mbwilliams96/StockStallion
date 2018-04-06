@@ -21,25 +21,27 @@ void StockStallion::commandLineLoginRegisterView(){
 
     // This function can be abstracted as a function for handling all user
     // interaction.
-    while(true) {
-        int choice = StockStallion::loginRegisterPrompt();
+    int choice = StockStallion::loginRegisterPrompt();
+//    while(true) {
 
-        switch (choice) {
-            case 1:
+
+//        switch (choice) {
+//            case 1:
                 // getLoginUsername();
                 // getLoginPassword();
                 // authorizeLogin();
-                break;
-            case 2:
+//                break;
+//            case 2:
                 // getRegisterUsername();
                 // getRegisterPassword();
                 StockStallion::registerNewUser();
-//                choice = 1;
-                break;
-            case 3:
-                std::cout << "Thank you for using Stock Stallion!\n\n";
-                exit(0);
-        }
+                int choice = StockStallion::loginRegisterPrompt();
+//                break;
+//            case 3:
+//                std::cout << "Thank you for using Stock Stallion!\n\n";
+//                exit(0);
+//        }
+
     }
 }
 void StockStallion::portfolioView(){};
@@ -155,6 +157,10 @@ int StockStallion::loginRegisterPrompt(){
  void StockStallion::verifyLogin(std::string username, std::string password){
      sqlite3 *db;
      char *zErrMsg = 0;
+
+     const char *zSql; /* SQL statement, UTF-8 encoded */
+     sqlite3_stmt **ppStmt; /* OUT: Statement handle */
+
      int rc;
      char *sql;
      const char* data = "Callback function called";
@@ -169,9 +175,15 @@ int StockStallion::loginRegisterPrompt(){
          fprintf(stderr, "Opened database successfully\n");
      }
 
-     /* Create SQL statement */
-     sql = "SELECT * from users";
+     std::vector< std::vector < std:: string > > result;
+     for( int i = 0; i < 2; i++ )
+         result.push_back(std::vector< std::string >());
 
+
+     /* Create SQL statement */
+     zSql = "SELECT * from users";
+
+     int sqlite3_prepare_v2(*db, *zSql, sqlite3_stmt **ppStmt);
      /* Execute SQL statement */
      rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
 
@@ -181,6 +193,8 @@ int StockStallion::loginRegisterPrompt(){
      } else {
          fprintf(stdout, "Operation done successfully\n");
      }
+
+
      sqlite3_close(db);
      return;
  }
