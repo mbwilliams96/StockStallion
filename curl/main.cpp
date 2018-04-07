@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <sstream>
 
 using namespace std;
 
@@ -45,6 +45,24 @@ int main(void)
         if(res != CURLE_OK)
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                     curl_easy_strerror(res));
+
+        //Convert response into a CString to be parsed
+        CString str(curl_easy_strerror(res));
+
+        //Finds the current price of the stock
+        std::string line;
+        std::istringstream stream(str);
+        std::string openingPrice;
+
+        while (std::getline(stream, line))
+        {
+            if (line.find("1. open\": \"") != -1)
+            {
+                openingPrice = line.substr(24, 7);
+                std::cout << openingPrice << endl;
+                break;
+            }
+        }
 
         /* always cleanup */
         curl_easy_cleanup(curl);
