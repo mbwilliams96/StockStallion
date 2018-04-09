@@ -21,10 +21,12 @@ int main(){
 //    else
 //        return bytes;
 
+    StockStallion app = StockStallion();
 
-  StockStallion app = StockStallion();
-
-  app.commandLineLoginRegisterView();
+    bool break_condition = false;
+    while(!break_condition) {
+        app.commandLineLoginRegisterView();
+    }
 
   // StockStallion::User user = app.commandLineLoginRegisterView();
 
