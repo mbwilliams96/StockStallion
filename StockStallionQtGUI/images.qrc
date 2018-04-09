@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/StockStallionImages">
+        <file>StockStallion Images/Login Form/passwordLock.png</file>
+        <file>StockStallion Images/Login Form/stallionLogoWhite.png</file>
+        <file>StockStallion Images/Login Form/userName.png</file>
+    </qresource>
+</RCC>

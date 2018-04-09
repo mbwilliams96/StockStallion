@@ -33,6 +33,10 @@ private slots:
 private:
     Ui::RegisterWindow *ui;
     bool isMouseDown = false;
+
+    bool checkUsername();
+    bool checkEmail();
+    bool checkPassword();
 };
 
 #endif // REGISTERWINDOW_H

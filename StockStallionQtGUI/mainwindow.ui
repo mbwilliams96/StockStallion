@@ -128,7 +128,7 @@ font: 12pt &quot;Century Gothic&quot;;
     <widget class="QLabel" name="registerLabel">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>48</x>
        <y>300</y>
        <width>111</width>
        <height>16</height>
@@ -144,7 +144,7 @@ font: 12pt &quot;Century Gothic&quot;;
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>168</x>
        <y>296</y>
        <width>91</width>
        <height>23</height>
@@ -261,6 +261,9 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+     </property>
+     <property name="maxLength">
+      <number>20</number>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>

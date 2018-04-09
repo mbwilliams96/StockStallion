@@ -153,6 +153,9 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
      </property>
+     <property name="maxLength">
+      <number>32</number>
+     </property>
     </widget>
     <widget class="QLineEdit" name="emailTextBox">
      <property name="geometry">
@@ -165,6 +168,9 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+     </property>
+     <property name="maxLength">
+      <number>40</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -195,6 +201,9 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
      </property>
+     <property name="maxLength">
+      <number>20</number>
+     </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>
      </property>
@@ -215,7 +224,7 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
       <string>Password:</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QLineEdit" name="passwordConfirmTextBox">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -226,6 +235,9 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+     </property>
+     <property name="maxLength">
+      <number>20</number>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>
@@ -253,14 +265,17 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
        <x>30</x>
        <y>120</y>
        <width>171</width>
-       <height>20</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">color: transparent;</string>
      </property>
      <property name="text">
-      <string>Put username constraints here</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Username must contain at least&lt;br /&gt;10 letters or numbers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
     <widget class="QLabel" name="emailErrorLabel">
@@ -285,14 +300,14 @@ font: 75 18pt &quot;MS Shell Dlg 2&quot;;</string>
        <x>30</x>
        <y>280</y>
        <width>171</width>
-       <height>20</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">color: transparent;</string>
      </property>
      <property name="text">
-      <string>Put password constraints here</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password must contain at least&lt;br /&gt;7 letters and numbers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="passwordConfirmErrorLabel">

@@ -21,8 +21,8 @@ RegisterWindow::RegisterWindow(QWidget *parent) :
     ui->windowFrame->setStyleSheet(" #windowFrame {background-color: qlineargradient(x1:0, x2: 0, y1: 0, y2: .5, stop: 0 #84A9FF, stop: 0.205 #84A9FF, stop: 0.2051 white, stop: 1 white); border-radius:5px; border:1px solid black}");
 
     //Stock Stallion Logo
-    QPixmap logo("StockStallion Images\\Login Form\\stallionLogoWhite.png");
-    ui->stockStallionLogo->setPixmap(logo.scaled(ui->stockStallionLogo->width(), ui->stockStallionLogo->height(), Qt::KeepAspectRatio));
+    QPixmap logo(":/StockStallionImages/StockStallion Images/Login Form/stallionLogoWhite.png");
+    ui->stockStallionLogo->setPixmap(logo.scaled(ui->stockStallionLogo->width(), ui->stockStallionLogo->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
 }
 
@@ -84,8 +84,103 @@ void RegisterWindow::on_registerButton_released()
 
 void RegisterWindow::on_registerButton_clicked()
 {
-    ui->usernameErrorLabel->setStyleSheet("color: red");
-    ui->emailErrorLabel->setStyleSheet("color: red");
-    ui->passwordErrorLabel->setStyleSheet("color: red");
-    ui->passwordConfirmErrorLabel->setStyleSheet("color: red");
+    if(checkUsername())
+        ui->usernameErrorLabel->setStyleSheet("color: transparent");
+    else
+        ui->usernameErrorLabel->setStyleSheet("color: red");
+
+    if(checkEmail())
+        ui->emailErrorLabel->setStyleSheet("color: transparent");
+    else
+        ui->emailErrorLabel->setStyleSheet("color: red");
+
+    if(checkPassword())
+    {
+        ui->passwordErrorLabel->setStyleSheet("color: transparent");
+
+        if(ui->passwordTextBox->text() == ui->passwordConfirmTextBox->text())
+        {
+            ui->passwordConfirmErrorLabel->setStyleSheet("color: transparent");
+        }
+        else
+        {
+            ui->passwordConfirmErrorLabel->setStyleSheet("color: red");
+        }
+    }
+    else
+    {
+        ui->passwordErrorLabel->setStyleSheet("color: red");
+        ui->passwordConfirmErrorLabel->setStyleSheet("color: transparent");
+    }
+}
+
+bool RegisterWindow::checkUsername()
+{
+    QString username = ui->usernameTextBox->text();
+    bool containsAlphaNumerics = true;
+    if(username.length() >= 10 && username.length() <= 32)
+    {
+        for(int i = 0; i < username.size(); i++)
+        {
+            if(!username[i].isLetterOrNumber())
+            {
+                containsAlphaNumerics = false;
+            }
+        }
+    }
+    else
+    {
+        return false;
+    }
+    return containsAlphaNumerics;
+}
+
+bool RegisterWindow::checkEmail()
+{
+    if(ui->emailTextBox->text().contains('@') && !ui->emailTextBox->text().contains(' '))
+    {
+        QStringList emailList = ui->emailTextBox->text().split('@');
+        if(emailList[0].length() != 0)
+        {
+            if(emailList[1].contains('.'))
+            {
+                QStringList domainList = emailList[1].split('.');
+                if(domainList[0].length() != 0 && domainList[1].length() != 0)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool RegisterWindow::checkPassword()
+{
+    QString password = ui->passwordTextBox->text();
+
+    bool containsAlphaNumerics = true;
+    bool containsLetter = false;
+    bool containsNumber = false;
+
+    if(password.length() > 7 && password.length() < 21)
+    {
+        for(int i = 0; i < password.size(); i++)
+        {
+            if(password[i].isDigit())
+                containsNumber = true;
+            else if(password[i].isLetter())
+                containsLetter = true;
+
+            if(!password[i].isLetterOrNumber())
+            {
+                containsAlphaNumerics = false;
+            }
+        }
+    }
+    else
+    {
+        return false;
+    }
+
+    return (containsAlphaNumerics && containsLetter && containsNumber);
 }
