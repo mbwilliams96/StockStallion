@@ -23,10 +23,8 @@ int main(){
 
     StockStallion app = StockStallion();
 
-    bool break_condition = false;
-    while(!break_condition) {
-        app.commandLineLoginRegisterView();
-    }
+//    bool break_condition = false;
+    app.commandLineLoginRegisterView();
 
   // StockStallion::User user = app.commandLineLoginRegisterView();
 
