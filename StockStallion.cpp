@@ -22,8 +22,10 @@ void StockStallion::commandLineLoginRegisterView(){
 
     // This function can be abstracted as a function for handling all user
     // interaction.
+    bool break_condition = false;
 
-    int choice = StockStallion::loginRegisterPrompt();
+    while (!break_condition) {
+        int choice = StockStallion::loginRegisterPrompt();
 
         if (choice == 1) {
             authorizeLogin();
@@ -37,7 +39,7 @@ void StockStallion::commandLineLoginRegisterView(){
             std::cout << "Thank you for using Stock Stallion!\n\n";
             exit(0);
         }
-
+    }
 }
 
 
