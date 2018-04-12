@@ -38,3 +38,6 @@ FORMS += \
     mainwindow.ui \
     registerwindow.ui \
     stockstallionwindow.ui
+
+RESOURCES += \
+    images.qrc

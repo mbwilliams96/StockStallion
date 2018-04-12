@@ -29,19 +29,16 @@ MainWindow::MainWindow(QWidget *parent) :
     //Add images to qlabel
 
     //Stock Stallion Logo
-    //QPixmap logo("C:\\Users\\Justin\\Desktop\\StockStallion Images\\Login Form\\stallionLogoWhite.png");
-    QPixmap logo("StockStallion Images\\Login Form\\stallionLogoWhite.png");
-    ui->stockStallionLogo->setPixmap(logo.scaled(ui->stockStallionLogo->width(), ui->stockStallionLogo->height(), Qt::KeepAspectRatio));
+    QPixmap logo(":/StockStallionImages/StockStallion Images/Login Form/stallionLogoWhite.png");
+    ui->stockStallionLogo->setPixmap(logo.scaled(ui->stockStallionLogo->width(), ui->stockStallionLogo->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     //Username Icon
-    //QPixmap userIcon("C:\\Users\\Justin\\Desktop\\StockStallion Images\\Login Form\\userName.png");
-    QPixmap userIcon("StockStallion Images\\Login Form\\userName.png");
-    ui->usernameIcon->setPixmap(userIcon.scaled(ui->usernameIcon->width(), ui->usernameIcon->height(), Qt::KeepAspectRatio));
+    QPixmap userIcon(":/StockStallionImages/StockStallion Images/Login Form/userName.png");
+    ui->usernameIcon->setPixmap(userIcon.scaled(ui->usernameIcon->width(), ui->usernameIcon->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     //Password Icon
-    //QPixmap passIcon("C:\\Users\\Justin\\Desktop\\StockStallion Images\\Login Form\\passwordLock.png");
-    QPixmap passIcon("StockStallion Images\\Login Form\\passwordLock.png");
-    ui->passwordIcon->setPixmap(passIcon.scaled(ui->passwordIcon->width(), ui->passwordIcon->height(), Qt::KeepAspectRatio));
+    QPixmap passIcon(":/StockStallionImages/StockStallion Images/Login Form/passwordLock.png");
+    ui->passwordIcon->setPixmap(passIcon.scaled(ui->passwordIcon->width(), ui->passwordIcon->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 MainWindow::~MainWindow()
