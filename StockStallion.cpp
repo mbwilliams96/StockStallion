@@ -283,7 +283,7 @@ bool StockStallion::verifyUsername(std::string &username){
           return false;
       }
   }
-  if (chara > 1 && integer > 1){
+  if (chara >= 1 && integer >= 1){
       if(username.length() > 9){
           return true;
       }
@@ -305,7 +305,7 @@ bool StockStallion::verifyPassword(std::string &password){
           return false;
       }
   }
-  if (chara > 1 && integer > 1){
+  if (chara >= 1 && integer >= 1){
       if(password.length() > 7 && password.length() < 21){
           return true;
       }
@@ -337,21 +337,47 @@ void StockStallion::registerNewUser(){
 }
 
 //perhaps return an object instead
-bool StockStallion::authorizeLogin(){
+bool StockStallion::authorizeLogin()
+{
     std::cout << "\n\n\nWelcome to the Stock Stallion Login Prompt.";
     // other fields can be added { name, temperament, etc}
     std::string username, password;
 
-    std::cout << "\n\nEnter a username: ";
-    std::cin >> username;
-    this -> verifyUsername(username);
+    while(true)
+    {
+        std::cout << "\n\nEnter a username: ";
+        std::cin >> username;
+        if(this -> verifyUsername(username))
+        {
+            std::cout << "\nUsername ACCEPTED\n";
+            break;
+        }
+        std::cout << "\nUsername must be at least 10 characters long and contain both letters and numbers"
+                "\nUsername cannot contain special characters";
+        cin.clear();
+        cin.ignore();
+    }
 
-    std::cout << "\n\nEnter a password: ";
-    std::cin >> password;
-    this -> verifyPassword(password);
+    while(true)
+    {
+        std::cout << "\n\nEnter a password: ";
+        std::cin >> password;
+        if(this -> verifyPassword(password))
+        {
+            std::cout << "\nPassword ACCEPTED\n";
+            break;
+        }
+        std::cout << "\nPassword must be at least 10 characters long and contain both letters and numbers."
+                "\nPassword cannot contain special characters or spaces.";
+        cin.clear();
+        cin.ignore();
+    }
+
+
     StockStallion::verifyLogin(username, password);
     return true;
 }
+
 
 
 // ################# END OF INPUT HANDLING FUNCTIONS #################
